@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from rest_api_app.models import Dogs, Breed, BREED_CHOICES
+from rest_api_app.models import Dogs, Breed, SIZE_CHOICES
 
-BREED_CHOICES = (
+SIZE_CHOICES = (
     ("Tiny", "Tiny"),
     ("Small", "Small"),
     ("Medium", "Medium"),
@@ -38,7 +38,7 @@ class DogSerializer(serializers.Serializer):
 class BreedSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True, max_length=100)
-    size = serializers.ChoiceField(choices=BREED_CHOICES)
+    size = serializers.ChoiceField(choices=SIZE_CHOICES)
     friendliness = serializers.IntegerField(required=True, min_value=1, max_value=5)
     trainability = serializers.IntegerField(required=True, min_value=1, max_value=5)
     sheddingamount = serializers.IntegerField(required=True, min_value=1, max_value=5)

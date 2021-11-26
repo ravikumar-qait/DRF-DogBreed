@@ -3,7 +3,7 @@ from django.db.models.deletion import Collector
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
-BREED_CHOICES = (
+SIZE_CHOICES = (
     ("Tiny", "Tiny"),
     ("Small", "Small"),
     ("Medium", "Medium"),
@@ -26,7 +26,7 @@ class Dogs(models.Model):
 
 class Breed(models.Model):
     name = models.CharField(max_length=100)
-    size = models.CharField(choices=BREED_CHOICES, max_length=100)
+    size = models.CharField(choices=SIZE_CHOICES, max_length=100)
     friendliness = models.IntegerField(null=False,validators=[MinValueValidator(1), MaxValueValidator(5)])
     trainability = models.IntegerField(null=False,validators=[MinValueValidator(1), MaxValueValidator(5)])
     sheddingamount = models.IntegerField(null=False,validators=[MinValueValidator(1), MaxValueValidator(5)])
