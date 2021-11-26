@@ -9,7 +9,7 @@ SIZE_CHOICES = (
 )
 
 
-class DogSerializer(serializers.Serializer):
+class DogSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True, max_length=100)
     age = serializers.IntegerField()
@@ -34,8 +34,12 @@ class DogSerializer(serializers.Serializer):
         instance.save()
         return instance
 
+    class Meta:
+        model = Dogs
+        fields = '__all__' 
 
-class BreedSerializer(serializers.Serializer):
+
+class BreedSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True, max_length=100)
     size = serializers.ChoiceField(choices=SIZE_CHOICES)
@@ -57,3 +61,7 @@ class BreedSerializer(serializers.Serializer):
         instance.exerciseneeds = validated_data.get('exerciseneeds', instance.exerciseneeds)
         instance.save()
         return instance
+    
+    class Meta:
+        model = Breed
+        fields = '__all__' 
